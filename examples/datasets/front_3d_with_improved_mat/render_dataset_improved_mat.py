@@ -254,6 +254,7 @@ if __name__ == '__main__':
         #                         append_to_existing_output=args.append_to_existing_output)
         
         # save the depth and rgb image
+        os.makedirs(scene_output_folder, exist_ok=True)
         for key in ['depth', 'colors']:
             for i, img in enumerate(data[key]):
                 plt.imsave(str(scene_output_folder.joinpath(f"{key}_{i}.png")), img)
