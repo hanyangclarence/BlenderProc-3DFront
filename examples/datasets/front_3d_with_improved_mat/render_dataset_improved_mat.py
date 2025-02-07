@@ -33,7 +33,7 @@ def parse_args():
     parser.add_argument("--fov", type=int, default=90, help="Field of view of camera.")
     parser.add_argument("--res_x", type=int, default=480, help="Image width.")
     parser.add_argument("--res_y", type=int, default=360, help="Image height.")
-    parser.add_argument("--debug", type=bool, default=False, action='store_true', help="Debug mode.")
+    parser.add_argument("--debug", action='store_true', help="Debug mode.")
     return parser.parse_args()
 
 
