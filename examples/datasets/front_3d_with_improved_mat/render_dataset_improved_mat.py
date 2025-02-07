@@ -109,7 +109,7 @@ if __name__ == '__main__':
         n_cameras = n_cameras - existing_n_renderings
 
     # try:
-    with time_limit(600): # per scene generation would not exceeds X seconds.
+    with time_limit(3000): # per scene generation would not exceeds X seconds.
         start_time = time()
 
         bproc.init()
@@ -257,7 +257,8 @@ if __name__ == '__main__':
         os.makedirs(scene_output_folder, exist_ok=True)
         for key in ['depth', 'colors']:
             for i, img in enumerate(data[key]):
-                plt.imsave(str(scene_output_folder.joinpath(f"{key}_{i}.png")), img)
+                # plt.imsave(str(scene_output_folder.joinpath(f"{key}_{i}.png")), img)
+                plt.imsave(f"{scene_output_folder}/{i:03d}_{key}.png", img)
         
         print('Time elapsed: %f.' % (time()-start_time))
 
