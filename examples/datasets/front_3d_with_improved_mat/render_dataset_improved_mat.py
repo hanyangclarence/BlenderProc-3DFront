@@ -240,7 +240,7 @@ if __name__ == '__main__':
 
         # render the whole pipeline
         # bproc.renderer.enable_normals_output()
-        bproc.renderer.enable_depth_output(activate_antialiasing=False)
+        bproc.renderer.enable_depth_output(activate_antialiasing=True)
         data = bproc.renderer.render()
         default_values = {"location": [0, 0, 0], "cp_inst_mark": '', "cp_uid": '', "cp_jid": '', "cp_room_id": ""}
         data.update(bproc.renderer.render_segmap(
@@ -259,6 +259,7 @@ if __name__ == '__main__':
             plt.imsave(f"{scene_output_folder}/{i:03d}_rgb.png", img)
         # save the depth image
         for i, img in enumerate(data["depth"]):
+            img[img > 8] = 0.0
             plt.imsave(f"{scene_output_folder}/{i:03d}_depth.png", img, cmap='gray')
         
         print('Time elapsed: %f.' % (time()-start_time))
