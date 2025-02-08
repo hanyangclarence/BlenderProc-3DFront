@@ -261,7 +261,7 @@ if __name__ == '__main__':
         for i, img in enumerate(data["depth"]):
             plt.imsave(f"{scene_output_folder}/{i:03d}_depth.png", img, cmap='gray')
         # save the normal image
-        for i, img in enumerate(data["normal"]):
+        for i, img in enumerate(data["normals"]):
             plt.imsave(f"{scene_output_folder}/{i:03d}_normals.png", img)
         
         print('Time elapsed: %f.' % (time()-start_time))
