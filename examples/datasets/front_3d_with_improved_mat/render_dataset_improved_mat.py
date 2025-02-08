@@ -247,19 +247,19 @@ if __name__ == '__main__':
             map_by=["instance", "class", "cp_uid", "cp_jid", "cp_inst_mark", "cp_room_id", "location"],
             default_values=default_values))
 
-        # write camera extrinsics
-        data['cam_Ts'] = cam_Ts
-        # write the data to a .hdf5 container
-        bproc.writer.write_hdf5(str(scene_output_folder), data,
-                                append_to_existing_output=args.append_to_existing_output)
+        # # write camera extrinsics
+        # data['cam_Ts'] = cam_Ts
+        # # write the data to a .hdf5 container
+        # bproc.writer.write_hdf5(str(scene_output_folder), data,
+        #                         append_to_existing_output=args.append_to_existing_output)
         
-        # os.makedirs(scene_output_folder, exist_ok=True)
-        # # save the rgb image
-        # for i, img in enumerate(data["colors"]):
-        #     plt.imsave(f"{scene_output_folder}/{i:03d}_rgb.png", img)
-        # # save the depth image
-        # for i, img in enumerate(data["depth"]):
-        #     plt.imsave(f"{scene_output_folder}/{i:03d}_depth.png", img, cmap='gray')
+        os.makedirs(scene_output_folder, exist_ok=True)
+        # save the rgb image
+        for i, img in enumerate(data["colors"]):
+            plt.imsave(f"{scene_output_folder}/{i:03d}_rgb.png", img)
+        # save the depth image
+        for i, img in enumerate(data["depth"]):
+            plt.imsave(f"{scene_output_folder}/{i:03d}_depth.png", img, cmap='gray')
         
         print('Time elapsed: %f.' % (time()-start_time))
 
