@@ -261,6 +261,28 @@ if __name__ == '__main__':
         for i, img in enumerate(data["depth"]):
             img[img > 20] = 0
             plt.imsave(f"{scene_output_folder}/{i:03d}_depth.png", img, cmap='gray')
+        # save instance_segmaps
+        for i, img in enumerate(data["instance_segmaps"]):
+            # save the instance map by assigning a unique color to each instance id
+            unique_instance_ids = np.unique(img)
+            instance_map = np.zeros((img.shape[0], img.shape[1], 3), dtype=np.uint8)
+            for instance_id in unique_instance_ids:
+                if instance_id == 0:
+                    continue
+                color = np.random.randint(0, 255, 3)
+                instance_map[img == instance_id] = color
+            plt.imsave(f"{scene_output_folder}/{i:03d}_instance_segmap.png", instance_map)
+        # save class_segmaps
+        for i, img in enumerate(data["class_segmaps"]):
+            # save the class map by assigning a unique color to each class id
+            unique_class_ids = np.unique(img)
+            class_map = np.zeros((img.shape[0], img.shape[1], 3), dtype=np.uint8)
+            for class_id in unique_class_ids:
+                if class_id == 0:
+                    continue
+                color = np.random.randint(0, 255, 3)
+                class_map[img == class_id] = color
+            plt.imsave(f"{scene_output_folder}/{i:03d}_class_segmap.png", class_map)
         
         print('Time elapsed: %f.' % (time()-start_time))
 
